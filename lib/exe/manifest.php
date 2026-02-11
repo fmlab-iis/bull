@@ -1,0 +1,1 @@
+{"display":"standalone","scope":"\/","name":"BULL","short_name":"BULL","description":"","start_url":"\/","background_color":"#fff","theme_color":"#dee7ec","icons":[]}

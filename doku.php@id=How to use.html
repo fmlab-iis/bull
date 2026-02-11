@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8" />
+	<title>
+   	how_to_use   	[BULL]
+   </title>
+   
+  	<meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="keywords" content="how_to_use"/>
+<link rel="start" href="index.html"/>
+<link rel="manifest" href="lib/exe/manifest.php" crossorigin="use-credentials"/>
+<link rel="canonical" href="https://fmlab-iis.github.io/bull/doku.php@id=How%20to%20use.html"/>
+<link rel="stylesheet" href="lib/exe/css.php@t=scanlines&amp;tseed=dc5e358da0e38e8c54ef073b1d1ecdfa.css"/>
+<script >var NS='';var JSINFO = {"id":"how_to_use","namespace":"","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<script src="lib/exe/jquery.php@tseed=8faf3dc90234d51a499f4f428a0eae43" defer="defer"></script>
+<script src="lib/exe/js.php@t=scanlines&amp;tseed=dc5e358da0e38e8c54ef073b1d1ecdfa&amp;template=scanlines" defer="defer"></script>
+  	<link rel="shortcut icon" href="lib/tpl/scanlines/images/favicon.ico" />
+<link rel="apple-touch-icon" href="lib/tpl/scanlines/images/apple-touch-icon.png" />
+  	  
+  	  
+  	
+	
+  	<script src="lib/tpl/scanlines/js/cufon-yui.js"></script>
+	<script src="lib/tpl/scanlines/js/Limelight.font.js"></script>
+	<script src="lib/tpl/scanlines/js/Aclonica.font.js"></script>
+	<script>
+		Cufon.replace('div.logo h1', { fontFamily: 'Limelight', color: '-linear-gradient(#55616c, 0.45=#8b97a2, 0.45=#7e8b98, #55616c)' });
+		Cufon.replace('div.logo h2', { fontFamily: 'Aclonica',  color: '-linear-gradient(#55616c, #8b97a2)' });
+	</script>	
+</head>
+  
+<body>
+<div class="dokuwiki">
+	  
+
+	<div class="stylehead">
+  
+   	<div class="header" id="header">    
+   	
+   		<div class="header_content">   		
+      		<div class="logo">
+					<h1>
+<a href="index.html">BULL</a>
+</h1>
+<h2>
+	<span style="border-bottom: 2px dotted #ada899;">
+Boolean fUnction Learning Library
+<br />
+	</span>
+</h2>
+				</div>
+				<!-- To avoid delays, initialize Cufón before other scripts at the bottom -->
+	<script> Cufon.now(); </script>
+		      			
+    			
+    		</div> 	
+    				
+			<div class="clearer"></div>
+			
+     </div>
+     
+    	
+	 	<div class="bar_top">
+	 		<div class="bar_top_content">  	
+	 			<div class="navi">			
+    				<ul>
+<li>
+<a href="index.html" >Main</a><div class="border"></div></li>
+<li>
+<a href="doku.php@id=Download.html" >Download</a><div class="border"></div></li>
+<li>
+<a href="doku.php@id=Install.html" >Install</a><div class="border"></div></li>
+<li>
+<a href="doku.php@id=How&#32;to&#32;use.html" >How to use</a><div class="border"></div></li>
+<li>
+<a href="doku.php@id=Experiments.html" >Experiments</a><div class="border"></div></li>
+</ul>
+    				<div class="clearer"></div>
+    				<div class="bar-right" id="bar__topright">
+   	 				    
+   	 				 				
+      			</div>      		
+    			</div>
+			</div>
+		</div>		    	
+  
+  	</div>  
+  	
+ 	
+	<div class="main">
+	
+  		
+
+		  								
+ 
+  	  	  							   						
+				 	  							
+ 	  							
+   	 
+		 	
+				<div class="full_page">
+			<div class="page">
+				<div class="page_title">
+					how_to_use	
+				</div>	
+				<div class="page_content">	
+					    
+					<div class="toc_none_sidebar">
+											</div>	 										
+	    			
+<p>
+Below we demonstrate how to construct a CDNF oracle that intended to learn the function f(x,y)= (x ∧ y) in C. Two functions have to be implemented (CDNF does not need non-membership queries).
+</p>
+
+<h4 id="membership_query">Membership Query</h4>
+<div class="level4">
+<pre class="code cpp">membership_result_t mymemqry <span class="br0">&#40;</span><span class="kw4">void</span> <span class="sy2">*</span>info, bitvector <span class="sy2">*</span>bv<span class="br0">&#41;</span><span class="br0">&#123;</span>
+    membership_result_t res<span class="sy4">;</span>
+    <span class="kw4">int</span> i<span class="sy4">;</span>
+    res<span class="sy1">=</span>TRUE<span class="sy4">;</span>
+    <span class="kw1">for</span><span class="br0">&#40;</span>i<span class="sy1">=</span><span class="nu0">1</span><span class="sy4">;</span>i<span class="sy1">&lt;</span>bv<span class="sy2">-</span><span class="sy1">&gt;</span>length<span class="sy4">;</span>i<span class="sy2">++</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+        <span class="kw1">if</span><span class="br0">&#40;</span><span class="sy3">!</span>bitvector_get<span class="br0">&#40;</span>bv, i<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+            res<span class="sy1">=</span>FALSE<span class="sy4">;</span>
+        <span class="br0">&#125;</span>
+    <span class="br0">&#125;</span>
+    <span class="kw1">return</span> res<span class="sy4">;</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+In the loop, the query result is set to FALSE if some bit in the bitvector <em>bv</em> is <em>false</em>. Otherwise the query result is TRUE.
+</p>
+
+</div>
+
+<h4 id="equivalence_query">Equivalence Query</h4>
+<div class="level4">
+<pre class="code cpp">equivalence_result_t<span class="sy2">*</span> myequqry <span class="br0">&#40;</span><span class="kw4">void</span> <span class="sy2">*</span>info, uscalar_t num_vars, boolformula_t<span class="sy2">*</span> c<span class="br0">&#41;</span><span class="br0">&#123;</span>
+&nbsp;
+    equivalence_result_t<span class="sy2">*</span> res <span class="sy1">=</span> <span class="kw3">malloc</span><span class="br0">&#40;</span><span class="kw3">sizeof</span><span class="br0">&#40;</span>equivalence_result_t<span class="br0">&#41;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    <span class="co1">//create a formula g(x,y)=~x and test if g(x,y) ∧ c(x,y) is satisfible. </span>
+    <span class="co1">//If yes, then the satisfying assignment is a valid counterexample. </span>
+    boolformula_t<span class="sy2">*</span> g<span class="sy1">=</span>boolformula_literal_new<span class="br0">&#40;</span><span class="sy2">-</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_t<span class="sy2">*</span> g_c<span class="sy1">=</span>boolformula_conjunction_new<span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    boolformula_set<span class="br0">&#40;</span>g_c,<span class="nu0">0</span>,g<span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_set<span class="br0">&#40;</span>g_c,<span class="nu0">1</span>,c<span class="br0">&#41;</span><span class="sy4">;</span>
+    sat_result_t<span class="sy2">*</span> r<span class="sy1">=</span>satisfible<span class="br0">&#40;</span>g_c<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    boolformula_free<span class="br0">&#40;</span>g_c<span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_free<span class="br0">&#40;</span>g<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    <span class="kw1">if</span><span class="br0">&#40;</span>r<span class="sy2">-</span><span class="sy1">&gt;</span>is_sat<span class="sy1">==</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#123;</span><span class="co1">//not equivalent</span>
+        res<span class="sy2">-</span><span class="sy1">&gt;</span>is_equal<span class="sy1">=</span>FALSE<span class="sy4">;</span>
+        <span class="co1">//call getce function to get a counterexample from r</span>
+        res<span class="sy2">-</span><span class="sy1">&gt;</span>counterexample<span class="sy1">=</span>getce<span class="br0">&#40;</span>r,num_vars<span class="br0">&#41;</span><span class="sy4">;</span>
+        sat_result_free<span class="br0">&#40;</span>r<span class="br0">&#41;</span><span class="sy4">;</span>
+        <span class="kw1">return</span> res<span class="sy4">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="co1">//create another formula g(x,y)=~y and test if g(x,y) ∧ c(x,y) is satisfible. </span>
+    <span class="co1">//If yes, then the satisfying assignment is a valid counterexample. </span>
+    g<span class="sy1">=</span>boolformula_literal_new<span class="br0">&#40;</span><span class="sy2">-</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    g_c<span class="sy1">=</span>boolformula_conjunction_new<span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    boolformula_set<span class="br0">&#40;</span>g_c,<span class="nu0">0</span>,g<span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_set<span class="br0">&#40;</span>g_c,<span class="nu0">1</span>,c<span class="br0">&#41;</span><span class="sy4">;</span>
+    r<span class="sy1">=</span>satisfible<span class="br0">&#40;</span>g_c<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    boolformula_free<span class="br0">&#40;</span>g_c<span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_free<span class="br0">&#40;</span>g<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    <span class="kw1">if</span><span class="br0">&#40;</span>r<span class="sy2">-</span><span class="sy1">&gt;</span>is_sat<span class="sy1">==</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="br0">&#123;</span><span class="co1">//not equivalent</span>
+        res<span class="sy2">-</span><span class="sy1">&gt;</span>is_equal<span class="sy1">=</span>FALSE<span class="sy4">;</span>
+        <span class="co1">//call getce function to get a counterexample from r</span>
+        res<span class="sy2">-</span><span class="sy1">&gt;</span>counterexample<span class="sy1">=</span>getce<span class="br0">&#40;</span>r,num_vars<span class="br0">&#41;</span><span class="sy4">;</span>
+        sat_result_free<span class="br0">&#40;</span>r<span class="br0">&#41;</span><span class="sy4">;</span>
+        <span class="kw1">return</span> res<span class="sy4">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+    <span class="co1">//test if x ∧ y ∧ c(x,y) is satisfible.</span>
+    <span class="co1">//If not, then {(x,true), (y,true)} is a valid counterexample. </span>
+    boolformula_t<span class="sy2">*</span> l1<span class="sy1">=</span>boolformula_literal_new<span class="br0">&#40;</span><span class="nu0">1</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_t<span class="sy2">*</span> l2<span class="sy1">=</span>boolformula_literal_new<span class="br0">&#40;</span><span class="nu0">2</span><span class="br0">&#41;</span><span class="sy4">;</span>
+    g_c<span class="sy1">=</span>boolformula_conjunction_new<span class="br0">&#40;</span><span class="nu0">3</span><span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    boolformula_set<span class="br0">&#40;</span>g_c,<span class="nu0">0</span>,l1<span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_set<span class="br0">&#40;</span>g_c,<span class="nu0">1</span>,l2<span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_set<span class="br0">&#40;</span>g_c,<span class="nu0">2</span>,c<span class="br0">&#41;</span><span class="sy4">;</span>
+    r<span class="sy1">=</span>satisfible<span class="br0">&#40;</span>g_c<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    boolformula_free<span class="br0">&#40;</span>l1<span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_free<span class="br0">&#40;</span>l2<span class="br0">&#41;</span><span class="sy4">;</span>
+    boolformula_free<span class="br0">&#40;</span>g_c<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+    <span class="kw1">if</span><span class="br0">&#40;</span>r<span class="sy2">-</span><span class="sy1">&gt;</span>is_sat<span class="sy1">==</span><span class="nu0">0</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+    <span class="co1">//{(x,true),(y,true)} is not a satisfying assignment of c and thus is a valid counterexample</span>
+        res<span class="sy2">-</span><span class="sy1">&gt;</span>is_equal<span class="sy1">=</span>FALSE<span class="sy4">;</span>
+        res<span class="sy2">-</span><span class="sy1">&gt;</span>counterexample<span class="sy1">=</span>bitvector_new<span class="br0">&#40;</span><span class="nu0">3</span><span class="br0">&#41;</span><span class="sy4">;</span>
+        bitvector_set<span class="br0">&#40;</span>res<span class="sy2">-</span><span class="sy1">&gt;</span>counterexample, <span class="nu0">1</span>, TRUE<span class="br0">&#41;</span><span class="sy4">;</span>
+        bitvector_set<span class="br0">&#40;</span>res<span class="sy2">-</span><span class="sy1">&gt;</span>counterexample, <span class="nu0">2</span>, TRUE<span class="br0">&#41;</span><span class="sy4">;</span>
+&nbsp;
+        sat_result_free<span class="br0">&#40;</span>r<span class="br0">&#41;</span><span class="sy4">;</span>
+        <span class="kw1">return</span> res<span class="sy4">;</span>
+    <span class="br0">&#125;</span>
+&nbsp;
+&nbsp;
+    <span class="co1">//the conjecture is correct!</span>
+    res<span class="sy2">-</span><span class="sy1">&gt;</span>is_equal<span class="sy1">=</span>TRUE<span class="sy4">;</span>
+    <span class="kw1">return</span> res<span class="sy4">;</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+Here we use three different tests to ensure that the conjecture is indeed equivalent to f(x,y). The first two checks ensure that assignments with (x,false) or (y,false) are not satisfying ones. The last check ensures that {(x,true),(y,true)} is a satisfying assignment.
+</p>
+
+</div>
+
+<h4 id="main_function">Main Function</h4>
+<div class="level4">
+<pre class="code cpp"><span class="kw4">int</span> main<span class="br0">&#40;</span><span class="kw4">int</span> argc, <span class="kw4">char</span> <span class="sy2">*</span>argv<span class="br0">&#91;</span><span class="br0">&#93;</span><span class="br0">&#41;</span><span class="br0">&#123;</span>
+        <span class="kw4">int</span> mode<span class="sy1">=</span><span class="nu0">0</span><span class="sy4">;</span>
+        boolformula_t<span class="sy2">*</span> c<span class="sy1">=</span>learn <span class="br0">&#40;</span><span class="kw2">NULL</span>, <span class="nu0">2</span>,mymemqry,<span class="kw2">NULL</span>, myequqry, mode<span class="br0">&#41;</span><span class="sy4">;</span>
+        <span class="kw3">printf</span><span class="br0">&#40;</span><span class="kw2">stderr</span>,<span class="st0">&quot;<span class="es1">\n</span>Finished!<span class="es1">\n</span>Result:&quot;</span><span class="br0">&#41;</span><span class="sy4">;</span>
+        boolformula_print<span class="br0">&#40;</span>c<span class="br0">&#41;</span><span class="sy4">;</span>
+        boolformula_free<span class="br0">&#40;</span>c<span class="br0">&#41;</span><span class="sy4">;</span>
+        <span class="kw1">return</span> <span class="nu0">0</span><span class="sy4">;</span>
+<span class="br0">&#125;</span></pre>
+
+<p>
+After the queries are implemented, we invoke the learning algorithm to obtain a correct conjecture. Since we are using CDNF, only two types of queries are needed. Therefore, 4th argument of the call to the “learn” function is NULL (non-membership queries are not used by CDNF).<br/>
+
+</p>
+
+<p>
+To be more specific, we call the function 
+</p>
+<pre class="code">  boolformula_t *learn (void *info, uscalar_t num_vars, membership_t membership,   
+  membership_t comembership, equivalence_t equivalence, int mode);</pre>
+
+<p>
+defined in core/cdnf.h
+</p>
+<ul>
+<li class="level1"><div class="li"> <strong>info</strong> can be used to pass additional information to the learning algorithm. They will be passed to different queries. When you want to have multiple learning instances, it can be used to identify the difference between instances.</div>
+</li>
+<li class="level1"><div class="li"> <strong>num_vars</strong> is the number of variables in the target function</div>
+</li>
+<li class="level1"><div class="li"> <strong>membership</strong> is the implemented membership query</div>
+</li>
+<li class="level1"><div class="li"> <strong>comembership</strong> is the implemented non-membership query</div>
+</li>
+<li class="level1"><div class="li"> <strong>equivalence</strong> is the implemented equivalence query</div>
+</li>
+<li class="level1"><div class="li"> <strong>mode</strong> is the type of learning algorithm in use</div>
+</li>
+</ul>
+
+<p>
+For <strong>CDNF</strong>, set <strong>mode</strong> to 0 and <strong>num_var</strong> to the number of variables in the target function.<br/>
+
+For <strong>CDNF+</strong>, set <strong>mode</strong> to 1 and <strong>num_var</strong> to 1.<br/>
+
+For <strong>CDNF++</strong>, set <strong>mode</strong> to 2 and <strong>num_var</strong> to 1.<br/>
+
+</p>
+
+<p>
+Below is a sample output of the program:
+</p>
+<pre class="code cpp">Finished<span class="sy3">!</span> Number of Mem. <span class="me1">Q</span>. <span class="sy1">=</span><span class="nu0">2</span>, co<span class="sy2">-</span>Mem. <span class="me1">Q</span><span class="sy1">=</span> <span class="nu0">0</span>, Equ. <span class="me1">Q</span>. <span class="sy1">=</span> <span class="nu0">3</span>
+Result<span class="sy4">:</span><span class="br0">&#123;</span> <span class="br0">&#123;</span> <span class="br0">&#123;</span> <span class="nu0">2</span> <span class="sy3">&amp;</span> <span class="nu0">1</span> <span class="br0">&#125;</span> <span class="br0">&#125;</span> <span class="br0">&#125;</span></pre>
+
+<p>
+It says that 2 membership queries and 3 equivalence queries are used to get the formula (y ∧ x).
+Notice that inside BULL, literals are stored in the form of numbers. Here x is mapped to 1 and y is mapped to 2.
+The result is in the form of CDNF (conjunction of formulae in disjunction normal form). E.g., { { { 2 &amp; 1 } | -1 } &amp; 2} is a possible output.
+</p>
+
+</div>
+	   				   			<div class="clearer"></div>
+	    		</div>
+	  		</div>
+	  			
+	    						 
+		   							
+   					
+   	<div class="clearer"></div>
+     						 		
+ 	</div>
+
+ 	
+	<div class="clearer"></div>	
+	
+   <div class="footer">
+		
+
+
+
+		<div class="license">Except where otherwise noted, content on this wiki is licensed under the following license: <bdi><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" rel="license" class="urlextern">CC Attribution-Share Alike 4.0 International</a></bdi></div>		
+		<!-- <div class="license"> Your own License (remove the html comment and "tpl_license(false)")</div> -->
+				<a href="http://www.rocking-minds.org/blog/2011-08-27/dokuwiki_template_scanlines">Scanlines</a> on <a href="http://www.dokuwiki.org">DW</a> under the hood
+	</div>	
+	
+   <a href="doku.php@id=How&#32;to&#32;use.html#header" title="Back to top" rel="nofollow" accesskey="x" id="top_link"></a>
+	
+
+</div>
+</body>
+</html>

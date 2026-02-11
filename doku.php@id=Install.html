@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+	<meta charset="utf-8" />
+	<title>
+   	install   	[BULL]
+   </title>
+   
+  	<meta name="generator" content="DokuWiki"/>
+<meta name="robots" content="noindex,nofollow"/>
+<meta name="keywords" content="install"/>
+<link rel="start" href="index.html"/>
+<link rel="manifest" href="lib/exe/manifest.php" crossorigin="use-credentials"/>
+<link rel="canonical" href="https://fmlab-iis.github.io/bull/doku.php@id=Install.html"/>
+<link rel="stylesheet" href="lib/exe/css.php@t=scanlines&amp;tseed=dc5e358da0e38e8c54ef073b1d1ecdfa.css"/>
+<script >var NS='';var JSINFO = {"id":"install","namespace":"","ACT":"show","useHeadingNavigation":0,"useHeadingContent":0};(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement);</script>
+<script src="lib/exe/jquery.php@tseed=8faf3dc90234d51a499f4f428a0eae43" defer="defer"></script>
+<script src="lib/exe/js.php@t=scanlines&amp;tseed=dc5e358da0e38e8c54ef073b1d1ecdfa&amp;template=scanlines" defer="defer"></script>
+  	<link rel="shortcut icon" href="lib/tpl/scanlines/images/favicon.ico" />
+<link rel="apple-touch-icon" href="lib/tpl/scanlines/images/apple-touch-icon.png" />
+  	  
+  	  
+  	
+	
+  	<script src="lib/tpl/scanlines/js/cufon-yui.js"></script>
+	<script src="lib/tpl/scanlines/js/Limelight.font.js"></script>
+	<script src="lib/tpl/scanlines/js/Aclonica.font.js"></script>
+	<script>
+		Cufon.replace('div.logo h1', { fontFamily: 'Limelight', color: '-linear-gradient(#55616c, 0.45=#8b97a2, 0.45=#7e8b98, #55616c)' });
+		Cufon.replace('div.logo h2', { fontFamily: 'Aclonica',  color: '-linear-gradient(#55616c, #8b97a2)' });
+	</script>	
+</head>
+  
+<body>
+<div class="dokuwiki">
+	  
+
+	<div class="stylehead">
+  
+   	<div class="header" id="header">    
+   	
+   		<div class="header_content">   		
+      		<div class="logo">
+					<h1>
+<a href="index.html">BULL</a>
+</h1>
+<h2>
+	<span style="border-bottom: 2px dotted #ada899;">
+Boolean fUnction Learning Library
+<br />
+	</span>
+</h2>
+				</div>
+				<!-- To avoid delays, initialize Cufón before other scripts at the bottom -->
+	<script> Cufon.now(); </script>
+		      			
+    			
+    		</div> 	
+    				
+			<div class="clearer"></div>
+			
+     </div>
+     
+    	
+	 	<div class="bar_top">
+	 		<div class="bar_top_content">  	
+	 			<div class="navi">			
+    				<ul>
+<li>
+<a href="index.html" >Main</a><div class="border"></div></li>
+<li>
+<a href="doku.php@id=Download.html" >Download</a><div class="border"></div></li>
+<li>
+<a href="doku.php@id=Install.html" >Install</a><div class="border"></div></li>
+<li>
+<a href="doku.php@id=How&#32;to&#32;use.html" >How to use</a><div class="border"></div></li>
+<li>
+<a href="doku.php@id=Experiments.html" >Experiments</a><div class="border"></div></li>
+</ul>
+    				<div class="clearer"></div>
+    				<div class="bar-right" id="bar__topright">
+   	 				    
+   	 				 				
+      			</div>      		
+    			</div>
+			</div>
+		</div>		    	
+  
+  	</div>  
+  	
+ 	
+	<div class="main">
+	
+  		
+
+		  								
+ 
+  	  	  							   						
+				 	  							
+ 	  							
+   	 
+		 	
+				<div class="full_page">
+			<div class="page">
+				<div class="page_title">
+					install	
+				</div>	
+				<div class="page_content">	
+					    
+					<div class="toc_none_sidebar">
+											</div>	 										
+	    			
+<h4 id="prerequisites">Prerequisites</h4>
+<div class="level4">
+<ol>
+<li class="level1"><div class="li"> GNU C,C++ complier and the make utility</div>
+</li>
+<li class="level1"><div class="li"> JAVA developer kit &gt;= 1.6 (needed for the JAVA oracle example)</div>
+</li>
+<li class="level1"><div class="li"> OCAML  3.12.1 (needed for the OCaml oracle example, we assume OCaml libraries are in /opt/local or /usr/local)</div>
+</li>
+<li class="level1"><div class="li"> Minisat 2.2.0 for the C and OCaml oracle examples and SAT4J for the JAVA oracle example. (For the convenience of the users, we pack the source code of minisat and the jar file of SAT4J into our tool.)</div>
+</li>
+</ol>
+
+</div>
+
+<h4 id="installation">Installation</h4>
+<div class="level4">
+
+<p>
+We use <strong>BULL-dir</strong> to denote the root folder of BULL.
+The easiest way is to run the ./build.sh script in the root folder of BULL. It will automatically compile solvers, the core library, and oracles in different programming languages. For users who only need a part of the package, we describe how to compile each component in detail below.
+</p>
+
+</div>
+
+<h5 id="the_core_library">The Core Library</h5>
+<div class="level5">
+<ol>
+<li class="level1"><div class="li"> cd <strong>BULL-dir</strong>/Src/core</div>
+</li>
+<li class="level4"><div class="li"> make</div>
+</li>
+</ol>
+
+</div>
+
+<h5 id="solvers">Solvers</h5>
+<div class="level5">
+
+<p>
+Before the compilation of the C or OCaml oracles, users have to first compile the minisat tool. For convenience, source code of minisat 2.2.0 is included in our package.
+</p>
+<ol>
+<li class="level1"><div class="li"> cd <strong>BULL-dir</strong>/Src/solvers/minisat/core</div>
+</li>
+<li class="level4"><div class="li"> g++ -c  -O2 -D __STDC_LIMIT_MACROS -D __STDC_FORMAT_MACROS -I../ Solver.cc</div>
+</li>
+</ol>
+
+</div>
+
+<h5 id="oracles">Oracles</h5>
+<div class="level5">
+<ol>
+<li class="level1"><div class="li"> cd <strong>BULL-dir</strong>/Src/[c, cpp, java, ocaml]</div>
+</li>
+<li class="level4"><div class="li"> make</div>
+</li>
+</ol>
+
+</div>
+	   				   			<div class="clearer"></div>
+	    		</div>
+	  		</div>
+	  			
+	    						 
+		   							
+   					
+   	<div class="clearer"></div>
+     						 		
+ 	</div>
+
+ 	
+	<div class="clearer"></div>	
+	
+   <div class="footer">
+		
+
+
+
+		<div class="license">Except where otherwise noted, content on this wiki is licensed under the following license: <bdi><a href="https://creativecommons.org/licenses/by-sa/4.0/deed.en" rel="license" class="urlextern">CC Attribution-Share Alike 4.0 International</a></bdi></div>		
+		<!-- <div class="license"> Your own License (remove the html comment and "tpl_license(false)")</div> -->
+				<a href="http://www.rocking-minds.org/blog/2011-08-27/dokuwiki_template_scanlines">Scanlines</a> on <a href="http://www.dokuwiki.org">DW</a> under the hood
+	</div>	
+	
+   <a href="doku.php@id=Install.html#header" title="Back to top" rel="nofollow" accesskey="x" id="top_link"></a>
+	
+
+</div>
+</body>
+</html>
